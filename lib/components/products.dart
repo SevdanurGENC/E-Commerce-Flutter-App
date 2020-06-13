@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ecommerceflutterapp/pages/product_details.dart';
 
 class Products extends StatefulWidget {
   @override
@@ -57,7 +58,14 @@ class Single_prod extends StatelessWidget {
         tag: prod_name,
         child: Material(
           child: InkWell(
-            onTap: () {},
+            onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+              // here we are passing the values of the product to product details page
+                builder: (context) => new ProductDetails(
+                  product_detail_name: prod_name,
+                  product_detail_picture: prod_picture,
+                  product_detail_new_price: prod_price,
+                  product_detail_old_price: prod_old_price,
+                ))),
             child: GridTile(
               footer: Container(
                 color: Colors.white70,
