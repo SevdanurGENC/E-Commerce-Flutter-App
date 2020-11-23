@@ -4,6 +4,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 //my own imports
 import 'package:ecommerceflutterapp/components/horizontal_listview.dart';
 import 'package:ecommerceflutterapp/components/products.dart';
+import 'package:ecommerceflutterapp/pages/cart.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -32,11 +33,12 @@ class _HomePageState extends State<HomePage> {
           AssetImage('images/m2.jpg'),
         ],
         autoplay: true,
-        animationCurve: Curves.fastOutSlowIn,
-        animationDuration: Duration(milliseconds: 1000),
+        //animationCurve: Curves.fastOutSlowIn,
+        //animationDuration: Duration(milliseconds: 1000),
         dotSize: 4.0,
         indicatorBgPadding: 2.0,
-        dotColor: Colors.pink ,
+        dotColor: Colors.pink,
+        dotBgColor: Colors.transparent,
       ),
     );
 
@@ -44,7 +46,12 @@ class _HomePageState extends State<HomePage> {
       appBar: new AppBar(
         elevation: 0.1,
         backgroundColor: Colors.pink,
-        title: Text("FashApp"),
+        title: Center(
+            child: Text(
+          "FashApp",
+          textAlign: TextAlign.center,
+        )),
+        //Text("FashApp"),
         actions: <Widget>[
           new IconButton(
               icon: Icon(
@@ -57,7 +64,10 @@ class _HomePageState extends State<HomePage> {
                 Icons.shopping_cart,
                 color: Colors.white,
               ),
-              onPressed: () {})
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => new Cart()));
+              })
         ],
       ),
       drawer: new Drawer(
@@ -76,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              decoration: new BoxDecoration(color: Colors.blueAccent),
+              decoration: new BoxDecoration(color: Colors.pink),
             ),
 //body
             InkWell(
@@ -113,11 +123,14 @@ class _HomePageState extends State<HomePage> {
             ),
 
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => new Cart()));
+              },
               child: ListTile(
-                title: Text("Categories"),
+                title: Text("Shopping Cart"),
                 leading: Icon(
-                  Icons.dashboard,
+                  Icons.shopping_cart,
                   color: Colors.pink,
                 ),
               ),
@@ -153,7 +166,7 @@ class _HomePageState extends State<HomePage> {
                 title: Text("About"),
                 leading: Icon(
                   Icons.help,
-                  color: Colors.blue,
+                  color: Colors.green,
                 ),
               ),
             ),
@@ -166,22 +179,25 @@ class _HomePageState extends State<HomePage> {
           image_carousel,
 
           //padding widget
-          new Padding(padding: const EdgeInsets.all(8.0),
-          child: new Text("Categories"),),
+          new Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: new Text("Categories"),
+          ),
 
           //horizantal list view begins here
           HorizontalList(),
 
           //padding widget
-          new Padding(padding: const EdgeInsets.all(20.0),
-            child: new Text("Recent Products"),),
+          new Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: new Text("Recent Products"),
+          ),
 
           //grid view
           Container(
             height: 320.0,
             child: Products(),
           )
-
         ],
       ),
     );
